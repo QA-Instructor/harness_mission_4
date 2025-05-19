@@ -7,9 +7,10 @@ pipeline:
   properties:
     ci:
       codebase:
-        connectorRef: account_level_github_connector
+        connectorRef: account.account_github_connector
         repoName: harness_mission_4
         build: <+input>
+        sparseCheckout: []
   stages:
     - stage:
         name: Build Stage
