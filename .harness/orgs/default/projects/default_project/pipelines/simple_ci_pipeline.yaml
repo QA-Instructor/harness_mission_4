@@ -1,0 +1,38 @@
+pipeline:
+  name: simple_ci_pipeline
+  identifier: simple_ci_pipeline
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account_level_github_connector
+        repoName: harness_mission_4
+        build: <+input>
+  stages:
+    - stage:
+        name: Build Stage
+        identifier: Build_Stage
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: false
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: run_script
+                  identifier: run_script
+                  spec:
+                    shell: Sh
+                    command: sh run.sh
